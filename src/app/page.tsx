@@ -125,15 +125,16 @@ export default function Home() {
       const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
       return entryDate === date;
     });
-  
+    
     // Find the first entry after 6 AM, or fallback to the first entry of the day
-    const firstEntryAfter6AM = entriesForDate.find((entry) => {
+    const firstEntryAfter6AM = entriesForDate?.find((entry) => {
       const entryTime = new Date(entry.dt * 1000).getHours();
       return entryTime >= 6;
     });
-  
-    return firstEntryAfter6AM || entriesForDate[0];
+    
+    return firstEntryAfter6AM || entriesForDate?.[0]; // Optional chaining here
   });
+  
   
 
   if (isLoading) return (
